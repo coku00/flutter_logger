@@ -40,9 +40,9 @@ class FileLogger extends ILogger {
   final String dire;
   final String fileName;
 
-  final bool asynchronous;
+  final bool asyncWrite;
 
-  FileLogger({this.dire, this.fileName, this.asynchronous = false}) {
+  FileLogger({this.dire, this.fileName, this.asyncWrite = false}) {
     try {
       _file = File('$dire$fileName');
       if (!_file.existsSync()) {
@@ -82,7 +82,7 @@ class FileLogger extends ILogger {
   String get path => file.path;
 
   void _writeLog(String tag, String level, Object o) {
-    if (asynchronous) {
+    if (asyncWrite) {
       Future(() {
         _write(tag, level, o);
       });
@@ -118,7 +118,7 @@ class FileLogger extends ILogger {
 
 class VerboseLogger extends FileLogger {
   VerboseLogger(String dir, String fileName, {bool asynchronous})
-      : super(dire: dir, fileName: fileName, asynchronous: asynchronous);
+      : super(dire: dir, fileName: fileName, asyncWrite: asynchronous);
 
   @override
   void e(String tag, Object o, {StackTrace stackTrace}) {}
@@ -132,7 +132,7 @@ class VerboseLogger extends FileLogger {
 
 class DebugLogger extends FileLogger {
   DebugLogger(String dir, String fileName, {bool asynchronous})
-      : super(dire: dir, fileName: fileName, asynchronous: asynchronous);
+      : super(dire: dir, fileName: fileName, asyncWrite: asynchronous);
 
   @override
   void e(String tag, Object o, {StackTrace stackTrace}) {}
@@ -146,7 +146,7 @@ class DebugLogger extends FileLogger {
 
 class ErrorLogger extends FileLogger {
   ErrorLogger(String dir, String fileName, {bool asynchronous})
-      : super(dire: dir, fileName: fileName, asynchronous: asynchronous);
+      : super(dire: dir, fileName: fileName, asyncWrite: asynchronous);
 
   @override
   void d(String tag, Object o) {}
@@ -160,7 +160,7 @@ class ErrorLogger extends FileLogger {
 
 class WarnLogger extends FileLogger {
   WarnLogger(String dir, String fileName, {bool asynchronous})
-      : super(dire: dir, fileName: fileName, asynchronous: asynchronous);
+      : super(dire: dir, fileName: fileName, asyncWrite: asynchronous);
 
   @override
   void v(String tag, Object o) {}
