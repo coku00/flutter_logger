@@ -100,10 +100,10 @@ class FileLogger extends ILogger {
 
     if (stackTrace != null) {
       sb.write(
-          '\n************************  Error Log StackTrace Start ************************\n\n');
+          '\n************************ Log StackTrace Start ************************\n\n');
       sb.write('${stackTrace.toString()}\n');
       sb.write(
-          '************************ Error Log StackTrace End ************************\n');
+          '************************  Log StackTrace End ************************\n');
     }
 
     sb.write('\n');
@@ -206,10 +206,10 @@ class PrintLogger extends ILogger {
       sb.write(o);
       if (stackTrace != null) {
         sb.write(
-            '\n************************  Error Log StackTrace Start ************************\n\n');
+            '\n************************   Log StackTrace Start ************************\n\n');
         sb.write('${stackTrace.toString()}\n');
         sb.write(
-            '************************ Error Log StackTrace End ************************\n\n');
+            '************************  Log StackTrace End ************************\n\n');
       }
       print(sb.toString());
     }
