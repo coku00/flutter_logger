@@ -1,10 +1,8 @@
 # flutter_logger
 
-A new Flutter package.
+## flutter日志工具，支持控制台打印，文件日志级别分类
 
-## Getting Started
 ```
-
 main(){
 
 init();
